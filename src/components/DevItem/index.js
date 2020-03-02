@@ -1,10 +1,20 @@
 import React from 'react';
+import { FaSync } from 'react-icons/fa';
 
 import './styles.css'
 
-function DevItem({ dev }) {
+function DevItem(props) {
+    const { dev, updateDev } = props;
+
+    async function handleUpdateDev(username) {
+        await updateDev(username);
+    }
+
     return (
         <li className="dev-item">
+            <div className="button-reload">
+                <FaSync onClick={() => handleUpdateDev(dev.github_username)} />
+            </div>
             <header>
                 <img src={dev.avatar_url} alt={dev.name} />
                 <div className="user-info">

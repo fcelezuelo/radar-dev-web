@@ -16,6 +16,8 @@ function App() {
     async function loadDevs() {
       const response = await api.get('/devs');
 
+      console.log(response.data)
+
       setDevs(response.data);
     }
 
@@ -28,6 +30,14 @@ function App() {
     setDevs([...devs, response.data]);
   }
 
+  async function handleUpdateDev(username){
+
+    await api.put(`/devs/${username}`)
+    const response = await api.get('/devs');
+
+    setDevs(response.data);
+  }
+
   return (
     <div id="app">
       <aside>
@@ -38,7 +48,7 @@ function App() {
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev}/>
+            <DevItem key={dev._id} dev={dev} updateDev={handleUpdateDev}/>
           ))}
         </ul>
       </main>
