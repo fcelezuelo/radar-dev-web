@@ -38,6 +38,14 @@ function App() {
     setDevs(response.data);
   }
 
+  async function handleDestroyDev(username){
+    
+    await api.delete(`/devs/${username}`)
+    const response = await api.get('/devs');
+
+    setDevs(response.data);
+  }
+
   return (
     <div id="app">
       <aside>
@@ -48,7 +56,7 @@ function App() {
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} updateDev={handleUpdateDev}/>
+            <DevItem key={dev._id} dev={dev} updateDev={handleUpdateDev} destroyDev={handleDestroyDev}/>
           ))}
         </ul>
       </main>

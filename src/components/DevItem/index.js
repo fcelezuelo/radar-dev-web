@@ -1,19 +1,28 @@
 import React from 'react';
-import { FaSync } from 'react-icons/fa';
+import { FaSync, FaTrashAlt } from 'react-icons/fa';
 
 import './styles.css'
 
 function DevItem(props) {
-    const { dev, updateDev } = props;
+    const { dev, updateDev, destroyDev } = props;
 
     async function handleUpdateDev(username) {
         await updateDev(username);
     }
 
+    async function handleDestroyDev(username) {
+        await destroyDev(username);
+    }
+
     return (
         <li className="dev-item">
-            <div className="button-reload">
-                <FaSync onClick={() => handleUpdateDev(dev.github_username)} />
+            <div className="button-controls">
+                <i>
+                    <FaSync onClick={() => handleUpdateDev(dev.github_username)} />
+                </i>
+                <i>
+                    <FaTrashAlt onClick={() => handleDestroyDev(dev.github_username)} />
+                </i>
             </div>
             <header>
                 <img src={dev.avatar_url} alt={dev.name} />

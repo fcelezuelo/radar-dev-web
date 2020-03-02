@@ -50,13 +50,18 @@ li.dev-item a:hover {
     color: #5a2ea6
 }
 
-.button-reload {
+.button-controls {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
+}
+
+.button-controls i {
+    margin-left: 5px;
     color: #8e4dff;
     cursor: pointer;
 }
 
-.button-reload:hover {
+.button-controls i:hover {
     color: #5a2ea6;
 }
